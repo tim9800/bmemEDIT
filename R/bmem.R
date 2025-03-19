@@ -194,7 +194,7 @@ bmem.mi.cov<-function(x, m=10, moment=FALSE){
                           pred = pred,
                           maxit = 10,
                           print = T,
-                          n.core = 10,
+                          n.core = 5,
                           n.imp.core = 2)
   # Transformation
   mi.data.long <- complete(mi.data, action = "long", include = T)

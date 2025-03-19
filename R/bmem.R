@@ -188,14 +188,12 @@ bmem.mi.cov<-function(x, m=10, moment=FALSE){
   meth["SRS_RAW_Total_Pre_SCI"] <- "~ I(SRS_RAW_Score_Pre_Comm + SRS_RAW_Score_Pre_Motiv + SRS_RAW_Score_Pre_Cog + SRS_RAW_Score_Pre_Aware)"
 	
   # Imputation - not setting seed to facilitate randomness in bootstrap
-  mi.data<-mice::parlmice(data = data,
+  mi.data<-mice::mice(data = data,
                           m = m,
                           meth = meth,
                           pred = pred,
                           maxit = 10,
-                          print = T,
-                          n.core = 5,
-                          n.imp.core = 2)
+                          print = T)
   # Transformation
   mi.data.long <- complete(mi.data, action = "long", include = T)
   mi.data.long.t <- mi.data.long %>%

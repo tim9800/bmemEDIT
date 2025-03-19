@@ -188,7 +188,7 @@ bmem.mi.cov<-function(x, m=10, moment=FALSE){
   meth["SRS_RAW_Total_Pre_SCI"] <- "~ I(SRS_RAW_Score_Pre_Comm + SRS_RAW_Score_Pre_Motiv + SRS_RAW_Score_Pre_Cog + SRS_RAW_Score_Pre_Aware)"
 	
   # Imputation - not setting seed to facilitate randomness in bootstrap
-  mi.data<-mice::futuremice(data = data,
+  mi.data<-mice::mice(data = data,
                           m = m,
                           meth = meth,
                           pred = pred,
@@ -859,7 +859,7 @@ bmem.ci.bca<-function(par.boot, par0, jack, cl=.95){
 
 
 ### A main function for analysis
-bmem<-function(x, ram, indirect, v, method='tsml', ci='bc', cl=.95, boot=10, m=10, varphi=.1, st='i', robust=FALSE, max_it=500, moment=FALSE, ...){
+bmem<-function(x, ram, indirect, v, method='tsml', ci='bc', cl=.95, boot=1000, m=10, varphi=.1, st='i', robust=FALSE, max_it=500, moment=FALSE, ...){
 	## method: list, pair, mi, me
 	## ci: norm, perc, bc, bca
 	N<-nrow(x)
